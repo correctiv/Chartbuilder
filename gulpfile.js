@@ -18,6 +18,7 @@ var changed = require("gulp-changed");
 var gulp = require("gulp");
 var stylus = require("gulp-stylus");
 var uglify = require("gulp-uglify");
+var ghPages = require('gulp-gh-pages');
 
 // local modules
 var config = require("./gulp/config");
@@ -183,6 +184,12 @@ gulp.task("test-page", [
 	done();
 });
 
+// deploy to github pages
+gulp.task('commitghpages', function() {
+  return gulp.src('./build/**/*')
+    .pipe(ghPages());
+});
+
 gulp.task("default", ["clean"], function () {
 	gulp.start("browser-sync");
 });
@@ -194,3 +201,5 @@ gulp.task("test", ["clean"], function() {
 gulp.task("build", ["clean"], function() {
 	gulp.start("_build");
 });
+
+gulp.task('deploy', ['build', 'commitghpages']);

@@ -13,6 +13,7 @@
     "test-page": "gulp test",
     "dev": "gulp",
     "build": "gulp build",
+    "deploy": "gulp deploy",
     "gh-pages": "npm run build && npm run docs && mv api-docs build && git subtree push --prefix build origin gh-pages"
   },
   "repository": {
@@ -53,6 +54,7 @@
     "d3": "^3.5.5",
     "d4": "git://github.com/yanofsky/d4.git",
     "flux": "~2.0.1",
+    "gulp-gh-pages": "^0.5.2",
     "lodash": "^3.9.3",
     "react": "^0.12.2",
     "react-component-visibility": "0.0.5",
