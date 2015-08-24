@@ -5,18 +5,36 @@ if (process.env.NODE_ENV == "dev") {
 }
 
 var React = require("react");
-var ChartbuilderLocalStorageAPI = require("./util/ChartbuilderLocalStorageAPI");
+var chartConfig = require("./charts/chart-config");
+var defaultInput = require("./config/default-input");
+var ChartServerActions = require("./actions/ChartServerActions");
 var Chartbuilder = require("./components/Chartbuilder.jsx");
-var container = document.querySelector(".chartbuilder-container");
+var dataBySeries = require("./util/parse-data-by-series");
 
-document.addEventListener("DOMContentLoaded", function() {
-	document.cookie = "authed=yes";
-	// Initialize data from localStorage
-	ChartbuilderLocalStorageAPI.defaultChart();
-	// Render parent chartbuilder component
-	React.render(
-		<Chartbuilder
-			showMobilePreview={false}
-		/>,
-	container );
-});
+global.createChartBuilder = function(container, options) {
+
+	var model;
+	if (options.model) {
+		model = options.model;
+	} else {
+		model = chartConfig.xy.defaultProps;
+	}
+	if (options.data) {
+		var res = dataBySeries(options.data);
+		model.chartProps.input = res.input;
+	} else {
+		model.chartProps.input = {
+			raw: '',
+			status: "EMPTY",
+			valid: false
+		};
+	}
+	ChartServerActions.receiveModel(model);
+
+	var chartbuilder = <Chartbuilder
+		showMobilePreview={false}
+	/>
+
+	React.render(chartbuilder, container);
+	return chartbuilder;
+};
