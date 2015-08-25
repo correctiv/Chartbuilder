@@ -1393,7 +1393,7 @@ h1,
 h2,
 h4,
 h5 {
-  font-family: "Khula-Bold", Arial, sans-serif;
+  font-family: Georgia, Times, "Times New Roman", serif;
   color: #666;
 }
 h1 {
@@ -1408,7 +1408,7 @@ h2 {
 }
 h3 {
   font-size: 20px;
-  font-family: Georgia, serif;
+  font-family: Georgia, Times, "Times New Roman", serif;
   font-weight: bold;
 }
 p {
@@ -1419,35 +1419,35 @@ p {
 }
 body {
   background-color: #f3f3f3;
-  font-family: 'Khula-Regular', Arial, Helvetica, sans-serif;
+  font-family: Georgia, Times, "Times New Roman", serif;
   font-size: 12px;
 }
 h1 {
   font-size: 2em;
   line-height: 1;
-  font-family: 'Khula-Regular', Arial, Helvetica, sans-serif;
+  font-family: Georgia, Times, "Times New Roman", serif;
 }
 h2 {
   font-size: 1.5em;
   line-height: 1.5em;
   margin-top: 0.5em;
   margin-bottom: 0.25em;
-  font-family: 'Khula-Regular', Arial, Helvetica, sans-serif;
+  font-family: Georgia, Times, "Times New Roman", serif;
 }
 h3 {
   font-size: 1.25em;
-  font-family: 'Khula-Regular', Arial, Helvetica, sans-serif;
+  font-family: Georgia, Times, "Times New Roman", serif;
 }
 h4 {
   font-size: 1em;
-  primary-font-family: 'Khula-Regular', Arial, Helvetica, sans-serif;
+  primary-font-family: Georgia, Times, "Times New Roman", serif;
 }
 table {
   width: 100%;
 }
 cite {
   font-size: 1em;
-  font-family: Georgia, serif;
+  font-family: Georgia, Times, "Times New Roman", serif;
   font-style: normal;
 }
 textarea,
@@ -1460,7 +1460,7 @@ select {
   margin-bottom: 1em;
   color: #666;
   border: 1px solid #ccc;
-  font-family: 'Khula-Regular', Arial, Helvetica, sans-serif;
+  font-family: Georgia, Times, "Times New Roman", serif;
   background-color: #fff;
 }
 textarea:focus,
@@ -1574,7 +1574,7 @@ div.renderer-wrapper {
 }
 svg.renderer-svg {
   fill: #fff;
-  font-family: 'Khula-Light', Arial, Helvetica, sans-serif;
+  font-family: Georgia, Times, "Times New Roman", serif;
   text-rendering: optimizeLegibility;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -1591,7 +1591,7 @@ svg.renderer-svg tspan {
   font-size: 20px;
 }
 .d4 .axis .tick {
-  font-family: 'Khula-Light', Arial, Helvetica, sans-serif;
+  font-family: Georgia, Times, "Times New Roman", serif;
 }
 .d4 .axis .tick[data-anchor="middle"] text {
   text-anchor: middle;
@@ -1630,7 +1630,7 @@ svg.renderer-svg tspan {
   text-anchor: start;
 }
 .d4 .concealer-label {
-  font-family: 'Khula-Light', Arial, Helvetica, sans-serif;
+  font-family: Georgia, Times, "Times New Roman", serif;
 }
 .d4 .concealer-label text {
   fill: #666;
@@ -1654,7 +1654,7 @@ svg.renderer-svg tspan {
   stroke-linejoin: round;
 }
 .d4 .margins .label {
-  font-family: 'Khula-Light', Arial, Helvetica, sans-serif;
+  font-family: Georgia, Times, "Times New Roman", serif;
 }
 .d4 .column-label {
   fill: #666;
@@ -1666,7 +1666,7 @@ svg.renderer-svg tspan {
   shape-rendering: crispEdges;
 }
 .svg-text {
-  font-family: 'Khula-Light', Arial, Helvetica, sans-serif;
+  font-family: Georgia, Times, "Times New Roman", serif;
   font-size: 20px;
 }
 .svg-text.svg-text-credit {
@@ -1686,7 +1686,7 @@ svg.renderer-svg tspan {
 }
 .svg-text.svg-text-title {
   fill: #666;
-  font-family: 'Khula-Regular', Arial, Helvetica, sans-serif;
+  font-family: Georgia, Times, "Times New Roman", serif;
   font-size: 20px;
 }
 .svg-source-pipe {
@@ -1696,7 +1696,7 @@ svg.renderer-svg tspan {
 }
 .svg-label-text {
   font-size: 20px;
-  font-family: 'Khula-Light', Arial, Helvetica, sans-serif;
+  font-family: Georgia, Times, "Times New Roman", serif;
   cursor: move;
 }
 .crosshair line {
@@ -1806,7 +1806,7 @@ svg.renderer-svg tspan {
   margin-right: 0.25em;
 }
 .chartbuilder-editor .editor-options {
-  font-family: 'Khula-Regular', Arial, Helvetica, sans-serif;
+  font-family: Georgia, Times, "Times New Roman", serif;
   margin: 30px 0;
   display: block;
   width: 100%;
@@ -1982,7 +1982,7 @@ svg.renderer-svg tspan {
 }
 .chartbuilder-editor .editor-label {
   font-size: 18px;
-  font-family: 'Khula-Regular', Arial, Helvetica, sans-serif;
+  font-family: Georgia, Times, "Times New Roman", serif;
 }
 .chartbuilder-editor .load-localstorage {
   display: none;
@@ -2072,7 +2072,7 @@ svg.renderer-svg tspan {
   width: 98%;
 }
 .chartbuilder-editor .mobile-overrides> h2:first-child {
-  font-family: "Khula-Bold", Arial, sans-serif;
+  font-family: Georgia, Times, "Times New Roman", serif;
   margin-bottom: 1em;
 }
 .chartbuilder-editor .mobile-overrides .scale-options {
