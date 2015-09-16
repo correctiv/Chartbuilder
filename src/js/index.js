@@ -10,6 +10,7 @@ var defaultInput = require("./config/default-input");
 var ChartServerActions = require("./actions/ChartServerActions");
 var Chartbuilder = require("./components/Chartbuilder.jsx");
 var dataBySeries = require("./util/parse-data-by-series");
+var SVGExporter = require('./util/svg-exporter');
 
 global.createChartBuilder = function(container, options) {
 
@@ -18,15 +19,16 @@ global.createChartBuilder = function(container, options) {
 		model = options.model;
 	} else {
 		model = chartConfig.xy.defaultProps;
+		model.metadata.credit = "";
 	}
 	if (options.data) {
 		var res = dataBySeries(options.data);
 		model.chartProps.input = res.input;
 	} else {
 		model.chartProps.input = {
-			raw: '',
-			status: "EMPTY",
-			valid: false
+			raw: 'date\tJuice\tTravel\n2000-01-01\t106.3\t49.843099\n2000-02-01\t106.0\t49.931931\n2000-03-01\t105.4\t61.478163',
+			status: "VALID",
+			valid: true
 		};
 	}
 	ChartServerActions.receiveModel(model);
@@ -36,5 +38,8 @@ global.createChartBuilder = function(container, options) {
 	/>
 
 	React.render(chartbuilder, container);
-	return chartbuilder;
+	return {
+		chartbuilder: chartbuilder,
+		SVGExporter: SVGExporter
+	};
 };
