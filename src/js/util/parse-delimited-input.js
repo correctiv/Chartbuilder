@@ -18,11 +18,14 @@ var stripChars = [
 
 var newLineRegex = /\r\n|\r|\n/;
 
-var separators = SessionStore.get("separators");
-
 function parseDelimInput(input, opts) {
 	opts = opts || {};
 	delimiter = opts.delimiter || parseUtils.detectDelimiter(input);
+
+	var separators = {
+		thousands: ",",
+		decimal: ".",
+	};
 
 	// create regex of special characters we want to strip out as well as our
 	// computed locale-specific thousands separator.
@@ -78,4 +81,3 @@ function parseKeyColumn(entry, hasDate) {
 }
 
 module.exports = parseDelimInput;
-

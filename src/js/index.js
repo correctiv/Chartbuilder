@@ -12,6 +12,10 @@ var Chartbuilder = require("./components/Chartbuilder.jsx");
 var dataBySeries = require("./util/parse-data-by-series");
 var SVGExporter = require('./util/svg-exporter');
 
+var ChartPropertiesStore = require("./stores/ChartPropertiesStore");
+var ChartMetadataStore = require("./stores/ChartMetadataStore");
+var SessionStore = require("./stores/SessionStore");
+
 global.createChartBuilder = function(container, options) {
 
 	var model;
@@ -20,6 +24,15 @@ global.createChartBuilder = function(container, options) {
 	} else {
 		model = chartConfig.xy.defaultProps;
 		model.metadata.credit = "";
+		model.session = model.session || {
+			emSize: 10,
+			width: 640,
+			timerOn: true
+		};
+		model.session.separators = {
+      "decimal": ".",
+      "thousands": ","
+    };
 	}
 	if (options.data) {
 		var res = dataBySeries(options.data);
@@ -40,6 +53,13 @@ global.createChartBuilder = function(container, options) {
 	React.render(chartbuilder, container);
 	return {
 		chartbuilder: chartbuilder,
-		SVGExporter: SVGExporter
+		SVGExporter: SVGExporter,
+		getState: function() {
+			return {
+				chartProps: ChartPropertiesStore.getAll(),
+				metadata: ChartMetadataStore.getAll(),
+				session: SessionStore.getAll()
+			};
+		}
 	};
 };

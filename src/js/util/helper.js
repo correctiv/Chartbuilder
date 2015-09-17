@@ -97,6 +97,11 @@ function compute_scale_domain(scaleObj, data, opts) {
 	};
 }
 
+
+function formatNumber(num, sep) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1" + sep)
+}
+
 /**
  * round_to_precision
  * Round a number to N decimal places
@@ -108,7 +113,7 @@ function compute_scale_domain(scaleObj, data, opts) {
  * @memberof helper
  * @return {number} Rounded number
  */
-function round_to_precision(num, precision, supress_thou_sep) {
+function round_to_precision(num, precision, decimalSep, thousandSep, supress_thou_sep) {
 	if (num === 0) {
 		//zero should always be "0"
 		return "0";
@@ -128,14 +133,14 @@ function round_to_precision(num, precision, supress_thou_sep) {
 	}
 
 	if (!supress_thou_sep) {
-		s[0] = d3.format(",")(parseInt(s[0]));
+		s[0] = formatNumber(parseInt(s[0]), thousandSep);
 	}
 
 	if (precision === 0) {
 		return s[0];
 	}
 
-	return s.join(".");
+	return s.join(decimalSep);
 }
 
 /**

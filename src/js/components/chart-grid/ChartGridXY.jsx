@@ -14,6 +14,7 @@ var filter = require("lodash/collection/filter");
 /* Helper functions */
 var cb_xy = require("../../charts/cb-charts").cb_xy;
 var help = require("../../util/helper.js");
+var SessionStore = require("../../stores/SessionStore");
 
 /* Renderer mixins */
 var ChartRendererMixin = require("../mixins/ChartRendererMixin.js");
@@ -69,6 +70,8 @@ var ChartGridXY = React.createClass({
 	},
 
 	render: function() {
+		var separators = SessionStore.get("separators");
+
 		var chartProps = update(this.props.chartProps, { $merge: {
 			data: this._applySettingsToData(this.props.chartProps, { altAxis: false }),
 			scale: this.props.scale
@@ -122,7 +125,7 @@ var ChartGridXY = React.createClass({
 		});
 
 		var formattedTicks = map(skipFirstValue, function(tick) {
-			return help.roundToPrecision(tick, currScale.precision);
+			return help.roundToPrecision(tick, currScale.precision, separators.decimal, separators.thousands);
 		});
 
 		var axisTicks = {
@@ -337,6 +340,8 @@ function yAxisUsing(location, axis, state) {
 	var isPrimary = (location === "primary");
 	var scale = chartProps.scale;
 
+	var separators = SessionStore.get("separators");
+
 	axis.tickValues(help.exactTicks(scale.primaryScale.domain, scale.primaryScale.ticks));
 	axis.innerTickSize(state.dimensions.width);
 
@@ -345,11 +350,11 @@ function yAxisUsing(location, axis, state) {
 		if (d == maxTickVal) {
 			return [
 				scale.primaryScale.prefix,
-				help.roundToPrecision(d, scale.primaryScale.precision),
+				help.roundToPrecision(d, scale.primaryScale.precision, separators.decimal, separators.thousands),
 				scale.primaryScale.suffix
 			].join("");
 		} else {
-			return help.roundToPrecision(d, scale.primaryScale.precision);
+			return help.roundToPrecision(d, scale.primaryScale.precision, separators.decimal, separators.thousands);
 		}
 	});
 }

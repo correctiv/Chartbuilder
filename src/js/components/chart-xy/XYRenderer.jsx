@@ -32,6 +32,7 @@ var HiddenSvg = require("../svg/HiddenSvg.jsx");
 // Helpers
 var cb_xy = require("../../charts/cb-charts").cb_xy;
 var help = require("../../util/helper.js");
+var SessionStore = require("../../stores/SessionStore");
 
 var scaleNames = ["primaryScale", "secondaryScale"];
 
@@ -105,6 +106,8 @@ var XYRenderer = React.createClass({
 		var labelComponents;
 		var dimensions = this.props.dimensions;
 
+		var separators = SessionStore.get("separators");
+
 		// Dimensions of the chart area
 		var chartAreaDimensions = {
 			width: (dimensions.width -
@@ -147,7 +150,7 @@ var XYRenderer = React.createClass({
 				});
 
 				var formattedTicks = map(skipFirstNode, function(tick) {
-					return help.roundToPrecision(tick, currScale.precision);
+					return help.roundToPrecision(tick, currScale.precision, separators.decimal, separators.thousands);
 				});
 
 				axisTicks.push({
@@ -777,6 +780,8 @@ function yAxisUsing(location, axis, el, state) {
 	var hasOtherAxis = chartProps._numSecondaryAxis > 0;
 	var scaleId = isPrimary ? "left" : "right";
 
+	var separators = SessionStore.get("separators");
+
 	if(!hasOtherAxis && !isPrimary) {
 		axis.render = function() {
 			this.container.selectAll(".right.axis").remove();
@@ -795,11 +800,11 @@ function yAxisUsing(location, axis, el, state) {
 		if (d == axisTicks.max) {
 			return [
 				scale.prefix,
-				help.roundToPrecision(d, scale.precision),
+				help.roundToPrecision(d, scale.precision, separators.decimal, separators.thousands),
 				scale.suffix
 			].join("");
 		} else {
-			return help.roundToPrecision(d, scale.precision);
+			return help.roundToPrecision(d, scale.precision, separators.decimal, separators.thousands);
 		}
 	});
 

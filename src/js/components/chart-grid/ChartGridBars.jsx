@@ -13,8 +13,8 @@ var map = require("lodash/collection/map");
 var reduce = require("lodash/collection/reduce");
 
 var SessionStore = require("../../stores/SessionStore");
-var separators = SessionStore.get("separators");
-var formatThousands = require("d3").format(separators.thousands);
+var separators; // Initialize late to be able to reconfigure
+var formatThousands;
 
 /* Helper functions */
 var cb_bar_grid = require("../../charts/cb-charts").cb_bar_grid;
@@ -376,10 +376,15 @@ function bar_tick_size(state) {
 }
 
 function format_bar_labels(label) {
+	// Late binding of value
+	if (formatThousands === undefined) {
+		separators = SessionStore.get("separators");
+		formatThousands = require("d3").format('a');
+	}
 	if (label === null) {
 		return "no data";
 	} else {
+		console.log(separators, label, formatThousands(label));
 		return formatThousands(label);
 	}
 }
-

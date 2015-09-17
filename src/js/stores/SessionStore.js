@@ -1,3 +1,7 @@
+var React = require("react");
+var PureRenderMixin = require('react/addons').addons.PureRenderMixin;
+var PropTypes = React.PropTypes;
+var update = React.addons.update;
 
 var assign = require("lodash/object/assign");
 var EventEmitter = require("events").EventEmitter;
@@ -72,6 +76,11 @@ Dispatcher.register(function(payload) {
 
 		case "update-session":
 			_session[action.key] = action.value;
+			SessionStore.emitChange();
+			break;
+
+		case "receive-model":
+			_session = update(_session, { $merge: action.model.session})
 			SessionStore.emitChange();
 			break;
 
