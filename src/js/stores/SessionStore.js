@@ -80,7 +80,7 @@ Dispatcher.register(function(payload) {
 			break;
 
 		case "receive-model":
-			_session = update(_session, { $merge: action.model.session})
+			_session = update(_session, { $merge: action.model.session || {}})
 			SessionStore.emitChange();
 			break;
 
